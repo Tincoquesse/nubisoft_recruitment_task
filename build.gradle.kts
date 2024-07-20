@@ -21,7 +21,10 @@ repositories {
 }
 
 dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-actuator:3.3.2")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.6.0")
+    implementation("org.springdoc:springdoc-openapi-starter-common:2.6.0")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("jakarta.validation:jakarta.validation-api:3.1.0")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -54,6 +57,10 @@ jsonSchema2Pojo {
 }
 
 tasks.named("compileKotlin").configure {
+    dependsOn("generateJsonSchema2Pojo")
+}
+
+tasks.named("runKtlintCheckOverMainSourceSet").configure {
     dependsOn("generateJsonSchema2Pojo")
 }
 

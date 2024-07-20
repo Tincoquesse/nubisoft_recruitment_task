@@ -1,5 +1,6 @@
 package com.nubisoft.demo.clients
 
+import com.nubisoft.demo.enums.ProgrammingLanguage
 import com.nubisoft.demo.exceptions.GithubClientException
 import models.generated.RepoSearchResult
 import models.generated.RepoSearchResultItem
@@ -15,12 +16,13 @@ class GithubClient(
     fun getRepositoriesByCreatedDate(
         date: LocalDate,
         quantity: Int,
+        language: ProgrammingLanguage?,
     ): Flux<List<RepoSearchResultItem>> {
         return webClientBuilder.build()
             .get()
             .uri {
                 it.path("search/repositories")
-                    .queryParam("q", "created:>$date")
+                    .queryParam("q", "created:>$date, language:${language?.value}")
                     .queryParam("sort", "stars")
                     .queryParam("order", "desc")
                     .queryParam("per_page", quantity)

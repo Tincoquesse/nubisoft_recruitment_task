@@ -13,5 +13,9 @@ class AppConfig {
         return WebClient.builder()
             .baseUrl("https://api.github.com")
             .defaultHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
+            .codecs { configurer ->
+                configurer.defaultCodecs()
+                    .maxInMemorySize(16 * 1024 * 1024)
+            }
     }
 }
