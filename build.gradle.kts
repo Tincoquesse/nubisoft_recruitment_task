@@ -27,12 +27,9 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-starter-common:2.6.0")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("jakarta.validation:jakarta.validation-api:3.1.0")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.boot:spring-boot-testcontainers")
+    testImplementation("com.maciejwalkowiak.spring:wiremock-spring-boot:2.1.2")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-    testImplementation("org.testcontainers:junit-jupiter")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 kotlin {

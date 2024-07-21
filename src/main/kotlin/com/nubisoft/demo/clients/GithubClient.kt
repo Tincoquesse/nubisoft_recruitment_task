@@ -6,31 +6,39 @@ import models.generated.RepoSearchResult
 import models.generated.RepoSearchResultItem
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
-import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 import java.time.LocalDate
 
 @Service
 class GithubClient(
     private val webClientBuilder: WebClient.Builder,
 ) {
+    private companion object {
+        const val Q = "q"
+        const val SORT = "sort"
+        const val ORDER = "order"
+        const val PER_PAGE = "per_page"
+    }
+
     fun getRepositoriesByCreatedDate(
         date: LocalDate,
         quantity: Int,
         language: ProgrammingLanguage?,
-    ): Flux<List<RepoSearchResultItem>> {
+    ): Mono<List<RepoSearchResultItem>> {
         return webClientBuilder.build()
             .get()
-            .uri {
-                it.path("search/repositories")
-                    .queryParam("q", "created:>$date, language:${language?.value}")
-                    .queryParam("sort", "stars")
-                    .queryParam("order", "desc")
-                    .queryParam("per_page", quantity)
+            .uri { builder ->
+                builder
+                    .path("search/repositories")
+                    .queryParam(Q, ("created:>$date" + (language?.let { ", language:${it.value}" } ?: "")))
+                    .queryParam(SORT, "stars")
+                    .queryParam(ORDER, "desc")
+                    .queryParam(PER_PAGE, quantity)
                     .build()
             }
             .retrieve()
-            .bodyToFlux(RepoSearchResult::class.java)
+            .bodyToMono(RepoSearchResult::class.java)
             .mapNotNull { it.items }
-            .onErrorMap { GithubClientException(it.message ?: "Unknown error") }
+            .onErrorMap { GithubClientException(it.message ?: "Unknown error", cause = it) }
     }
 }
