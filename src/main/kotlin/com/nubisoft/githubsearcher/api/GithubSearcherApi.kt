@@ -55,7 +55,7 @@ class GithubSearcherApi(
         return searcherService.getAllMarkedRepos()
     }
 
-    @Operation(summary = "Get all marked Github repositories")
+    @Operation(summary = "Mark Github repository with given id")
     @PostMapping("/repos/{repoId}/mark")
     fun markRepositoryById(
         @PathVariable repoId: Int,
