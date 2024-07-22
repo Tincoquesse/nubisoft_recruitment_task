@@ -1,10 +1,10 @@
-package com.nubisoft.githubsearcher.internal.services.implementations
+package com.nubisoft.githubsearcher.internal.service.implementations
 
 import com.nubisoft.githubsearcher.api.dto.GithubRepositoryItemDto
-import com.nubisoft.githubsearcher.internal.exceptions.GithubClientException
-import com.nubisoft.githubsearcher.internal.repositories.GithubRepoDatabase
-import com.nubisoft.githubsearcher.internal.services.GithubService
-import com.nubisoft.githubsearcher.internal.services.SearcherAppService
+import com.nubisoft.githubsearcher.internal.exception.GithubClientException
+import com.nubisoft.githubsearcher.internal.persistence.GithubRepoDatabase
+import com.nubisoft.githubsearcher.internal.service.GithubService
+import com.nubisoft.githubsearcher.internal.service.SearcherAppService
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 

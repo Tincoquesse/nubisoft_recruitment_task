@@ -1,4 +1,4 @@
-package com.nubisoft.githubsearcher.internal.services.implementations
+package com.nubisoft.githubsearcher.internal.service.implementations
 
 import com.nubisoft.githubsearcher.api.dto.GithubRepositoryItemDto
 import models.generated.RepoSearchResultItem

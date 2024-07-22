@@ -34,13 +34,9 @@ class GithubSearcherAppTests {
         wiremock.stubFor(
             get(urlPathEqualTo("/search/repositories"))
                 .withQueryParam("q", equalTo("created:>2022-01-01, language:Java"))
-                .withQueryParams(
-                    mapOf(
-                        "sort" to equalTo("stars"),
-                        "order" to equalTo("desc"),
-                        "per_page" to equalTo("5")
-                    )
-                )
+                .withQueryParam("sort", equalTo("stars"))
+                .withQueryParam("order", equalTo("desc"))
+                .withQueryParam("per_page", equalTo("5"))
                 .willReturn(okJson(wiremockResponse))
         )
 

@@ -2,9 +2,9 @@ package com.nubisoft.githubsearcher.api
 
 import com.nubisoft.githubsearcher.api.dto.GithubRepositoryItemDto
 import com.nubisoft.githubsearcher.api.enum.ProgrammingLanguage
-import com.nubisoft.githubsearcher.internal.exceptions.ErrorResponse
-import com.nubisoft.githubsearcher.internal.services.GithubService
-import com.nubisoft.githubsearcher.internal.services.SearcherAppService
+import com.nubisoft.githubsearcher.internal.exception.ErrorResponse
+import com.nubisoft.githubsearcher.internal.service.GithubService
+import com.nubisoft.githubsearcher.internal.service.SearcherAppService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema

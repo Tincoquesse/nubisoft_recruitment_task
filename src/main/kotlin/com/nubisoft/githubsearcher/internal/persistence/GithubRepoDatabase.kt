@@ -1,4 +1,4 @@
-package com.nubisoft.githubsearcher.internal.repositories
+package com.nubisoft.githubsearcher.internal.persistence
 
 import com.nubisoft.githubsearcher.api.dto.GithubRepositoryItemDto
 import org.springframework.stereotype.Repository

@@ -1,4 +1,4 @@
-package com.nubisoft.githubsearcher.internal.exceptions
+package com.nubisoft.githubsearcher.internal.exception
 
 import java.time.Instant
 

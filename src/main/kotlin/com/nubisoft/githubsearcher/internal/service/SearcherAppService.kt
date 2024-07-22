@@ -1,4 +1,4 @@
-package com.nubisoft.githubsearcher.internal.services
+package com.nubisoft.githubsearcher.internal.service
 
 import com.nubisoft.githubsearcher.api.dto.GithubRepositoryItemDto
 import reactor.core.publisher.Mono

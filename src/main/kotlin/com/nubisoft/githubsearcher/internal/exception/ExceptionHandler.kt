@@ -1,4 +1,4 @@
-package com.nubisoft.githubsearcher.internal.exceptions
+package com.nubisoft.githubsearcher.internal.exception
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

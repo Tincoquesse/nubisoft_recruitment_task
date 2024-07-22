@@ -1,8 +1,8 @@
-package com.nubisoft.githubsearcher.internal.services.implementations
+package com.nubisoft.githubsearcher.internal.service.implementations
 
 import com.nubisoft.githubsearcher.api.dto.GithubRepositoryItemDto
 import com.nubisoft.githubsearcher.api.enum.ProgrammingLanguage
-import com.nubisoft.githubsearcher.internal.services.GithubService
+import com.nubisoft.githubsearcher.internal.service.GithubService
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
 import java.time.LocalDate
