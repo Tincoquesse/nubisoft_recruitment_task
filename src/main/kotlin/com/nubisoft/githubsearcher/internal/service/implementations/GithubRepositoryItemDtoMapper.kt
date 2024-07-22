@@ -12,13 +12,13 @@ internal class GithubRepositoryItemDtoMapper {
 
     fun toDto(item: RepoSearchResultItem): GithubRepositoryItemDto {
         return GithubRepositoryItemDto(
-            id = item.id,
+            id = item.id.toLong(),
             stars = item.stargazersCount,
-            name = item.name,
-            fullName = item.fullName,
+            repoName = item.name,
+            repoFullName = item.fullName,
             ownerLogin = item.owner.login,
             private = item.private,
-            ownerId = item.owner.id,
+            ownerId = item.owner.id.toLong(),
             repoUrl = item.url
         )
     }

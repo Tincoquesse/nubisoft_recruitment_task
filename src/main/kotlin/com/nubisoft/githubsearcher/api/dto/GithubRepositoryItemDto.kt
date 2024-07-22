@@ -3,12 +3,12 @@ package com.nubisoft.githubsearcher.api.dto
 import java.net.URI
 
 data class GithubRepositoryItemDto(
-    val id: Int,
+    val id: Long,
     val stars: Int,
-    val name: String,
-    val fullName: String,
+    val repoName: String,
+    val repoFullName: String,
     val ownerLogin: String,
     val private: Boolean,
-    val ownerId: Int,
+    val ownerId: Long,
     val repoUrl: URI,
 )

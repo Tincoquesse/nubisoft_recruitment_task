@@ -13,10 +13,11 @@ internal class GithubRepoDatabase {
             .map { it.add(item) }
             .map { item }
 
-    fun get(repoId: Int): Mono<GithubRepositoryItemDto?> =
-        this.repos.mapNotNull { repo ->
-            repo.find { it.id == repoId }
-        }
+    fun get(repoId: Long): Mono<GithubRepositoryItemDto> =
+        this.repos
+            .mapNotNull { repo ->
+                repo.find { it.id == repoId }
+            }
 
     fun getAll(): Mono<List<GithubRepositoryItemDto>> = this.repos.map { it.toList() }
 }

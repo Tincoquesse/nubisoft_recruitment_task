@@ -8,7 +8,7 @@ import java.time.LocalDate
 interface SearcherAppService {
     fun getAllMarkedRepos(): Mono<List<GithubRepositoryItemDto>>
 
-    fun markRepositoryById(githubRepositoryId: Int): Mono<GithubRepositoryItemDto>
+    fun markRepositoryById(githubRepositoryId: Long): Mono<GithubRepositoryItemDto>
 
     fun getRepositoriesByCreatedDate(createdDate: LocalDate, quantity: Int, language: ProgrammingLanguage?): Mono<List<GithubRepositoryItemDto>>
 }

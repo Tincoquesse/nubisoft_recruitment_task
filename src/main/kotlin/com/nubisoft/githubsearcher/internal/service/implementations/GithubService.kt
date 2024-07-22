@@ -17,7 +17,7 @@ internal class GithubService(
             .map { repoMapper.toDtos(it) }
     }
 
-    fun getRepositoryById(repositoryId: Int): Mono<GithubRepositoryItemDto> {
+    fun getRepositoryById(repositoryId: Long): Mono<GithubRepositoryItemDto> {
         return githubClient
             .getRepositoryById(repositoryId)
             .map { repoMapper.toDto(it) }

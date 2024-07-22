@@ -56,7 +56,7 @@ class GithubSearcherApi(
     @Operation(summary = "Mark Github repository with given id")
     @PostMapping("/repos/{repoId}/mark")
     fun markRepositoryById(
-        @PathVariable repoId: Int,
+        @PathVariable repoId: Long,
     ): Mono<GithubRepositoryItemDto> {
         return searcherService.markRepositoryById(repoId)
     }
