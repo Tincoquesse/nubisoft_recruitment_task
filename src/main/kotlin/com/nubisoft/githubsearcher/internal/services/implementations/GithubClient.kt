@@ -1,7 +1,7 @@
-package com.nubisoft.demo.clients
+package com.nubisoft.githubsearcher.internal.services.implementations
 
-import com.nubisoft.demo.enums.ProgrammingLanguage
-import com.nubisoft.demo.exceptions.GithubClientException
+import com.nubisoft.githubsearcher.api.enum.ProgrammingLanguage
+import com.nubisoft.githubsearcher.internal.exceptions.GithubClientException
 import models.generated.RepoSearchResult
 import models.generated.RepoSearchResultItem
 import org.springframework.stereotype.Service
@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono
 import java.time.LocalDate
 
 @Service
-class GithubClient(
+internal class GithubClient(
     private val webClientBuilder: WebClient.Builder,
 ) {
     private companion object {
@@ -20,11 +20,7 @@ class GithubClient(
         const val PER_PAGE = "per_page"
     }
 
-    fun getRepositoriesByCreatedDate(
-        date: LocalDate,
-        quantity: Int,
-        language: ProgrammingLanguage?,
-    ): Mono<List<RepoSearchResultItem>> {
+    fun getRepositoriesByCreatedDate(date: LocalDate, quantity: Int, language: ProgrammingLanguage?): Mono<List<RepoSearchResultItem>> {
         return webClientBuilder.build()
             .get()
             .uri { builder ->
@@ -39,6 +35,15 @@ class GithubClient(
             .retrieve()
             .bodyToMono(RepoSearchResult::class.java)
             .mapNotNull { it.items }
+            .onErrorMap { GithubClientException(it.message ?: "Unknown error", cause = it) }
+    }
+
+    fun getRepositoryById(repoId: Int): Mono<RepoSearchResultItem> {
+        return webClientBuilder.build()
+            .get()
+            .uri("repositories/$repoId")
+            .retrieve()
+            .bodyToMono(RepoSearchResultItem::class.java)
             .onErrorMap { GithubClientException(it.message ?: "Unknown error", cause = it) }
     }
 }

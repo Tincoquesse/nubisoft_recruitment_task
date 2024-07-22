@@ -1,4 +1,4 @@
-package com.nubisoft.demo.enums
+package com.nubisoft.githubsearcher.api.enum
 
 enum class ProgrammingLanguage(val value: String) {
     PYTHON("Python"),

@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -120,8 +121,16 @@ public class RepoSearchResultItem {
     @JsonProperty("full_name")
     @NotNull
     private String fullName;
+    /**
+     * Simple User
+     * <p>
+     * A GitHub user.
+     * 
+     */
     @JsonProperty("owner")
-    private Object owner;
+    @JsonPropertyDescription("A GitHub user.")
+    @Valid
+    private SimpleUser owner;
     /**
      * 
      * (Required)
@@ -559,7 +568,12 @@ public class RepoSearchResultItem {
     public RepoSearchResultItem() {
     }
 
-    public RepoSearchResultItem(Integer id, String nodeId, String name, String fullName, Object owner, Boolean _private, URI htmlUrl, String description, Boolean fork, URI url, ZonedDateTime createdAt, ZonedDateTime updatedAt, ZonedDateTime pushedAt, URI homepage, Integer size, Integer stargazersCount, Integer watchersCount, String language, Integer forksCount, Integer openIssuesCount, String masterBranch, String defaultBranch, BigDecimal score, URI forksUrl, String keysUrl, String collaboratorsUrl, String teamsUrl, String hooksUrl, String issueEventsUrl, String eventsUrl, String assigneesUrl, String branchesUrl, String tagsUrl, String blobsUrl, String gitTagsUrl, String gitRefsUrl, String treesUrl, String statusesUrl, String languagesUrl, String stargazersUrl, String contributorsUrl, String subscribersUrl, String subscriptionUrl, String commitsUrl, String gitCommitsUrl, String commentsUrl, String issueCommentUrl, String contentsUrl, String compareUrl, String mergesUrl, String archiveUrl, String downloadsUrl, String issuesUrl, String pullsUrl, String milestonesUrl, String notificationsUrl, String labelsUrl, String releasesUrl, String deploymentsUrl) {
+    /**
+     * 
+     * @param owner
+     *     Simple User. A GitHub user.
+     */
+    public RepoSearchResultItem(Integer id, String nodeId, String name, String fullName, SimpleUser owner, Boolean _private, URI htmlUrl, String description, Boolean fork, URI url, ZonedDateTime createdAt, ZonedDateTime updatedAt, ZonedDateTime pushedAt, URI homepage, Integer size, Integer stargazersCount, Integer watchersCount, String language, Integer forksCount, Integer openIssuesCount, String masterBranch, String defaultBranch, BigDecimal score, URI forksUrl, String keysUrl, String collaboratorsUrl, String teamsUrl, String hooksUrl, String issueEventsUrl, String eventsUrl, String assigneesUrl, String branchesUrl, String tagsUrl, String blobsUrl, String gitTagsUrl, String gitRefsUrl, String treesUrl, String statusesUrl, String languagesUrl, String stargazersUrl, String contributorsUrl, String subscribersUrl, String subscriptionUrl, String commitsUrl, String gitCommitsUrl, String commentsUrl, String issueCommentUrl, String contentsUrl, String compareUrl, String mergesUrl, String archiveUrl, String downloadsUrl, String issuesUrl, String pullsUrl, String milestonesUrl, String notificationsUrl, String labelsUrl, String releasesUrl, String deploymentsUrl) {
         super();
         this.id = id;
         this.nodeId = nodeId;
@@ -706,13 +720,25 @@ public class RepoSearchResultItem {
         this.fullName = fullName;
     }
 
+    /**
+     * Simple User
+     * <p>
+     * A GitHub user.
+     * 
+     */
     @JsonProperty("owner")
-    public Object getOwner() {
+    public SimpleUser getOwner() {
         return owner;
     }
 
+    /**
+     * Simple User
+     * <p>
+     * A GitHub user.
+     * 
+     */
     @JsonProperty("owner")
-    public void setOwner(Object owner) {
+    public void setOwner(SimpleUser owner) {
         this.owner = owner;
     }
 
@@ -2135,7 +2161,7 @@ public class RepoSearchResultItem {
             super();
         }
 
-        public RepoSearchResultItemBuilder(Integer id, String nodeId, String name, String fullName, Object owner, Boolean _private, URI htmlUrl, String description, Boolean fork, URI url, ZonedDateTime createdAt, ZonedDateTime updatedAt, ZonedDateTime pushedAt, URI homepage, Integer size, Integer stargazersCount, Integer watchersCount, String language, Integer forksCount, Integer openIssuesCount, String masterBranch, String defaultBranch, BigDecimal score, URI forksUrl, String keysUrl, String collaboratorsUrl, String teamsUrl, String hooksUrl, String issueEventsUrl, String eventsUrl, String assigneesUrl, String branchesUrl, String tagsUrl, String blobsUrl, String gitTagsUrl, String gitRefsUrl, String treesUrl, String statusesUrl, String languagesUrl, String stargazersUrl, String contributorsUrl, String subscribersUrl, String subscriptionUrl, String commitsUrl, String gitCommitsUrl, String commentsUrl, String issueCommentUrl, String contentsUrl, String compareUrl, String mergesUrl, String archiveUrl, String downloadsUrl, String issuesUrl, String pullsUrl, String milestonesUrl, String notificationsUrl, String labelsUrl, String releasesUrl, String deploymentsUrl) {
+        public RepoSearchResultItemBuilder(Integer id, String nodeId, String name, String fullName, SimpleUser owner, Boolean _private, URI htmlUrl, String description, Boolean fork, URI url, ZonedDateTime createdAt, ZonedDateTime updatedAt, ZonedDateTime pushedAt, URI homepage, Integer size, Integer stargazersCount, Integer watchersCount, String language, Integer forksCount, Integer openIssuesCount, String masterBranch, String defaultBranch, BigDecimal score, URI forksUrl, String keysUrl, String collaboratorsUrl, String teamsUrl, String hooksUrl, String issueEventsUrl, String eventsUrl, String assigneesUrl, String branchesUrl, String tagsUrl, String blobsUrl, String gitTagsUrl, String gitRefsUrl, String treesUrl, String statusesUrl, String languagesUrl, String stargazersUrl, String contributorsUrl, String subscribersUrl, String subscriptionUrl, String commitsUrl, String gitCommitsUrl, String commentsUrl, String issueCommentUrl, String contentsUrl, String compareUrl, String mergesUrl, String archiveUrl, String downloadsUrl, String issuesUrl, String pullsUrl, String milestonesUrl, String notificationsUrl, String labelsUrl, String releasesUrl, String deploymentsUrl) {
             super(id, nodeId, name, fullName, owner, _private, htmlUrl, description, fork, url, createdAt, updatedAt, pushedAt, homepage, size, stargazersCount, watchersCount, language, forksCount, openIssuesCount, masterBranch, defaultBranch, score, forksUrl, keysUrl, collaboratorsUrl, teamsUrl, hooksUrl, issueEventsUrl, eventsUrl, assigneesUrl, branchesUrl, tagsUrl, blobsUrl, gitTagsUrl, gitRefsUrl, treesUrl, statusesUrl, languagesUrl, stargazersUrl, contributorsUrl, subscribersUrl, subscriptionUrl, commitsUrl, gitCommitsUrl, commentsUrl, issueCommentUrl, contentsUrl, compareUrl, mergesUrl, archiveUrl, downloadsUrl, issuesUrl, pullsUrl, milestonesUrl, notificationsUrl, labelsUrl, releasesUrl, deploymentsUrl);
         }
 
@@ -2154,7 +2180,7 @@ public class RepoSearchResultItem {
         }
 
         @SuppressWarnings("unchecked")
-        public RepoSearchResultItemBuilderBase(Integer id, String nodeId, String name, String fullName, Object owner, Boolean _private, URI htmlUrl, String description, Boolean fork, URI url, ZonedDateTime createdAt, ZonedDateTime updatedAt, ZonedDateTime pushedAt, URI homepage, Integer size, Integer stargazersCount, Integer watchersCount, String language, Integer forksCount, Integer openIssuesCount, String masterBranch, String defaultBranch, BigDecimal score, URI forksUrl, String keysUrl, String collaboratorsUrl, String teamsUrl, String hooksUrl, String issueEventsUrl, String eventsUrl, String assigneesUrl, String branchesUrl, String tagsUrl, String blobsUrl, String gitTagsUrl, String gitRefsUrl, String treesUrl, String statusesUrl, String languagesUrl, String stargazersUrl, String contributorsUrl, String subscribersUrl, String subscriptionUrl, String commitsUrl, String gitCommitsUrl, String commentsUrl, String issueCommentUrl, String contentsUrl, String compareUrl, String mergesUrl, String archiveUrl, String downloadsUrl, String issuesUrl, String pullsUrl, String milestonesUrl, String notificationsUrl, String labelsUrl, String releasesUrl, String deploymentsUrl) {
+        public RepoSearchResultItemBuilderBase(Integer id, String nodeId, String name, String fullName, SimpleUser owner, Boolean _private, URI htmlUrl, String description, Boolean fork, URI url, ZonedDateTime createdAt, ZonedDateTime updatedAt, ZonedDateTime pushedAt, URI homepage, Integer size, Integer stargazersCount, Integer watchersCount, String language, Integer forksCount, Integer openIssuesCount, String masterBranch, String defaultBranch, BigDecimal score, URI forksUrl, String keysUrl, String collaboratorsUrl, String teamsUrl, String hooksUrl, String issueEventsUrl, String eventsUrl, String assigneesUrl, String branchesUrl, String tagsUrl, String blobsUrl, String gitTagsUrl, String gitRefsUrl, String treesUrl, String statusesUrl, String languagesUrl, String stargazersUrl, String contributorsUrl, String subscribersUrl, String subscriptionUrl, String commitsUrl, String gitCommitsUrl, String commentsUrl, String issueCommentUrl, String contentsUrl, String compareUrl, String mergesUrl, String archiveUrl, String downloadsUrl, String issuesUrl, String pullsUrl, String milestonesUrl, String notificationsUrl, String labelsUrl, String releasesUrl, String deploymentsUrl) {
             // Skip initialization when called from subclass
             if (this.getClass().equals(RepoSearchResultItem.RepoSearchResultItemBuilder.class)) {
                 this.instance = ((T) new RepoSearchResultItem(id, nodeId, name, fullName, owner, _private, htmlUrl, description, fork, url, createdAt, updatedAt, pushedAt, homepage, size, stargazersCount, watchersCount, language, forksCount, openIssuesCount, masterBranch, defaultBranch, score, forksUrl, keysUrl, collaboratorsUrl, teamsUrl, hooksUrl, issueEventsUrl, eventsUrl, assigneesUrl, branchesUrl, tagsUrl, blobsUrl, gitTagsUrl, gitRefsUrl, treesUrl, statusesUrl, languagesUrl, stargazersUrl, contributorsUrl, subscribersUrl, subscriptionUrl, commitsUrl, gitCommitsUrl, commentsUrl, issueCommentUrl, contentsUrl, compareUrl, mergesUrl, archiveUrl, downloadsUrl, issuesUrl, pullsUrl, milestonesUrl, notificationsUrl, labelsUrl, releasesUrl, deploymentsUrl));
@@ -2188,7 +2214,7 @@ public class RepoSearchResultItem {
             return this;
         }
 
-        public RepoSearchResultItem.RepoSearchResultItemBuilderBase withOwner(Object owner) {
+        public RepoSearchResultItem.RepoSearchResultItemBuilderBase withOwner(SimpleUser owner) {
             ((RepoSearchResultItem) this.instance).owner = owner;
             return this;
         }

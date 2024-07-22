@@ -1,8 +1,8 @@
-package com.nubisoft.demo.exceptions
+package com.nubisoft.githubsearcher.internal.exceptions
 
 import java.time.Instant
 
-data class ErrorResponse(
+internal data class ErrorResponse(
     val message: String,
     val code: Int,
     val timestamp: Instant,

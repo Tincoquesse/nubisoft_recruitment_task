@@ -1,14 +1,15 @@
-package com.nubisoft.demo
+package com.nubisoft.githubsearcher
 
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.client.WireMock.equalTo
 import com.github.tomakehurst.wiremock.client.WireMock.get
 import com.github.tomakehurst.wiremock.client.WireMock.getRequestedFor
-import com.github.tomakehurst.wiremock.client.WireMock.ok
+import com.github.tomakehurst.wiremock.client.WireMock.okJson
 import com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo
 import com.maciejwalkowiak.wiremock.spring.ConfigureWireMock
 import com.maciejwalkowiak.wiremock.spring.EnableWireMock
 import com.maciejwalkowiak.wiremock.spring.InjectWireMock
+import com.nubisoft.githubsearcher.api.enum.ProgrammingLanguage.JAVA
 import models.generated.RepoSearchResultItem
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -26,29 +27,32 @@ class GithubSearcherAppTests {
     lateinit var wiremock: WireMockServer
 
     @Test
-    fun contextLoads() {
+    fun `Should get list of Github best starred repositories with all filters on`() {
         // given
+        val wiremockResponse = String(javaClass.getResourceAsStream("/fixtures/GetRepositoriesGithubSearchResponse.json")!!.readAllBytes())
+
         wiremock.stubFor(
             get(urlPathEqualTo("/search/repositories"))
-                .withQueryParam("q", equalTo("created:>2022-01-01"))
+                .withQueryParam("q", equalTo("created:>2022-01-01, language:Java"))
                 .withQueryParams(
                     mapOf(
                         "sort" to equalTo("stars"),
                         "order" to equalTo("desc"),
-                        "per_page" to equalTo("10"),
-                    ),
+                        "per_page" to equalTo("5")
+                    )
                 )
-                .willReturn(ok()),
+                .willReturn(okJson(wiremockResponse))
         )
 
         // when
         val response =
             client.get()
-                .uri {
-                    it
-                        .path("/api/v1/search/repos")
+                .uri { builder ->
+                    builder
+                        .path("/api/v1/repos/search")
                         .queryParam("createdDate", "2022-01-01")
-                        .queryParam("quantity", 10)
+                        .queryParam("quantity", 5)
+                        .queryParam("language", JAVA)
                         .build()
                 }
                 .exchange()
@@ -57,7 +61,7 @@ class GithubSearcherAppTests {
                 .returnResult()
 
         // then
-        assertThat(response.responseBody).hasSize(0)
+        assertThat(response.responseBody).hasSize(5)
         wiremock.verify(getRequestedFor(urlPathEqualTo("/search/repositories")))
     }
 }

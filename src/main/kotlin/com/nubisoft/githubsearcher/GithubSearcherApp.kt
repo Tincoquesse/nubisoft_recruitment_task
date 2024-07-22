@@ -1,4 +1,4 @@
-package com.nubisoft.demo
+package com.nubisoft.githubsearcher
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
