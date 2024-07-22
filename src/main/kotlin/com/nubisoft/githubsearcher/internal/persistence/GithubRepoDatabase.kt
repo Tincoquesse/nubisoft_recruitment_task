@@ -14,8 +14,8 @@ internal class GithubRepoDatabase {
             .map { item }
 
     fun get(repoId: Int): Mono<GithubRepositoryItemDto?> =
-        this.repos.mapNotNull {
-            it.find { repo -> repo.id == repoId }
+        this.repos.mapNotNull { repo ->
+            repo.find { it.id == repoId }
         }
 
     fun getAll(): Mono<List<GithubRepositoryItemDto>> = this.repos.map { it.toList() }

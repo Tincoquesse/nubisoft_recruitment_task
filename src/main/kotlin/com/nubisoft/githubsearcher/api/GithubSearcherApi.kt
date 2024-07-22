@@ -2,8 +2,7 @@ package com.nubisoft.githubsearcher.api
 
 import com.nubisoft.githubsearcher.api.dto.GithubRepositoryItemDto
 import com.nubisoft.githubsearcher.api.enum.ProgrammingLanguage
-import com.nubisoft.githubsearcher.internal.exception.ErrorResponse
-import com.nubisoft.githubsearcher.internal.service.GithubService
+import com.nubisoft.githubsearcher.internal.exception.model.ErrorResponse
 import com.nubisoft.githubsearcher.internal.service.SearcherAppService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.media.Content
@@ -24,7 +23,6 @@ import java.time.LocalDate
 @RestController
 @RequestMapping("/api/v1", produces = [APPLICATION_JSON_VALUE])
 class GithubSearcherApi(
-    private val githubService: GithubService,
     private val searcherService: SearcherAppService,
 ) {
     @ApiResponses(
@@ -46,7 +44,7 @@ class GithubSearcherApi(
         @RequestParam quantity: Int,
         @RequestParam language: ProgrammingLanguage?,
     ): Mono<List<GithubRepositoryItemDto>> {
-        return githubService.getRepositoriesByCreatedDate(createdDate, quantity, language)
+        return searcherService.getRepositoriesByCreatedDate(createdDate, quantity, language)
     }
 
     @Operation(summary = "Get all marked Github repositories")

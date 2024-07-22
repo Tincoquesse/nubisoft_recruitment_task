@@ -1,18 +1,23 @@
 package com.nubisoft.githubsearcher.internal.service.implementations
 
 import com.nubisoft.githubsearcher.api.dto.GithubRepositoryItemDto
-import com.nubisoft.githubsearcher.internal.exception.GithubClientException
+import com.nubisoft.githubsearcher.api.enum.ProgrammingLanguage
+import com.nubisoft.githubsearcher.internal.exception.model.GithubClientException
 import com.nubisoft.githubsearcher.internal.persistence.GithubRepoDatabase
-import com.nubisoft.githubsearcher.internal.service.GithubService
 import com.nubisoft.githubsearcher.internal.service.SearcherAppService
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Mono
+import java.time.LocalDate
 
 @Service
 internal class SearcherAppServiceImpl(
     private val repoDatabase: GithubRepoDatabase,
     private val githubService: GithubService,
 ) : SearcherAppService {
+    override fun getRepositoriesByCreatedDate(createdDate: LocalDate, quantity: Int, language: ProgrammingLanguage?): Mono<List<GithubRepositoryItemDto>> {
+        return githubService.getRepositoriesByCreatedDate(createdDate, quantity, language)
+    }
+
     override fun getAllMarkedRepos(): Mono<List<GithubRepositoryItemDto>> {
         return repoDatabase.getAll()
     }

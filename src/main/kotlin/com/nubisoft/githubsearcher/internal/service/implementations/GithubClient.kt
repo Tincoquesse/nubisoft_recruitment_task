@@ -1,7 +1,7 @@
 package com.nubisoft.githubsearcher.internal.service.implementations
 
 import com.nubisoft.githubsearcher.api.enum.ProgrammingLanguage
-import com.nubisoft.githubsearcher.internal.exception.GithubClientException
+import com.nubisoft.githubsearcher.internal.exception.model.GithubClientException
 import models.generated.RepoSearchResult
 import models.generated.RepoSearchResultItem
 import org.springframework.stereotype.Service
