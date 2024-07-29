@@ -13,6 +13,7 @@ internal class SearcherAppServiceImpl(
     private val repoDatabase: GithubRepoDatabase,
     private val githubService: GithubService,
 ) : SearcherAppService {
+
     override fun getRepositoriesByCreatedDate(createdDate: LocalDate, quantity: Int, language: ProgrammingLanguage?): Mono<List<GithubRepositoryItemDto>> {
         return githubService.getRepositoriesByCreatedDate(createdDate, quantity, language)
     }
@@ -24,6 +25,8 @@ internal class SearcherAppServiceImpl(
     override fun markRepositoryById(githubRepositoryId: Long): Mono<GithubRepositoryItemDto> {
         return repoDatabase.get(githubRepositoryId)
             .switchIfEmpty(githubService.getRepositoryById(githubRepositoryId))
-            .flatMap { repo -> if (repo != null) repoDatabase.add(repo) else Mono.empty() }
+            .flatMap { repo ->
+                if (repo != null) repoDatabase.add(repo.copy(marked = true)) else Mono.empty()
+            }
     }
 }

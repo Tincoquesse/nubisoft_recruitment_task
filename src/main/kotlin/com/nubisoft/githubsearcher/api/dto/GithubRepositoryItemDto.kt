@@ -11,4 +11,5 @@ data class GithubRepositoryItemDto(
     val private: Boolean,
     val ownerId: Long,
     val repoUrl: URI,
+    val marked: Boolean = false,
 )

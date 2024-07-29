@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service
 
 @Service
 internal class GithubRepositoryItemDtoMapper {
+
     fun toDtos(repoItems: List<RepoSearchResultItem>): List<GithubRepositoryItemDto> {
         return repoItems.map { toDto(it) }
     }

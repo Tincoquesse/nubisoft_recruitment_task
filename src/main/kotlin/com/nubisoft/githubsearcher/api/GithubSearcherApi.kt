@@ -2,14 +2,8 @@ package com.nubisoft.githubsearcher.api
 
 import com.nubisoft.githubsearcher.api.dto.GithubRepositoryItemDto
 import com.nubisoft.githubsearcher.api.enum.ProgrammingLanguage
-import com.nubisoft.githubsearcher.internal.exception.model.ErrorResponse
 import com.nubisoft.githubsearcher.internal.service.SearcherAppService
 import io.swagger.v3.oas.annotations.Operation
-import io.swagger.v3.oas.annotations.media.Content
-import io.swagger.v3.oas.annotations.media.Schema
-import io.swagger.v3.oas.annotations.responses.ApiResponse
-import io.swagger.v3.oas.annotations.responses.ApiResponses
-import models.generated.RepoSearchResultItem
 import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -25,18 +19,6 @@ import java.time.LocalDate
 class GithubSearcherApi(
     private val searcherService: SearcherAppService,
 ) {
-    @ApiResponses(
-        value = [
-            ApiResponse(
-                responseCode = "200",
-                content = [Content(mediaType = "application/json", schema = Schema(implementation = RepoSearchResultItem::class)) ]
-            ),
-            ApiResponse(
-                responseCode = "400",
-                content = [Content(schema = Schema(implementation = ErrorResponse::class)) ]
-            )
-        ]
-    )
     @Operation(summary = "Get all best starred Github repositories")
     @GetMapping("/repos/search")
     fun getSortedGithubRepositories(
